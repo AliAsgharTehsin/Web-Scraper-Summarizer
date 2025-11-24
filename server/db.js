@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const uri = "mongodb+srv://AliAsgharTehsin:34YRxTZTpBrL7hc5@cluster0.91bt2bq.mongodb.net/?appName=Cluster0";
+require('dotenv').config()
+const uri = `mongodb+srv://AliAsgharTehsin:${process.env.MONGODB_PASSWORD}@cluster0.91bt2bq.mongodb.net/?appName=Cluster0`;
 const clientOptions = { serverApi: { version: '1', strict: true, deprecationErrors: true } };
 async function connectDB() {
   try {
