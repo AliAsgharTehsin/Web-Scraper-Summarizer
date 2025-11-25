@@ -11,7 +11,7 @@ def chunk_text(text,chunk_size=400,overlap=50):
     chunks=[]
     words=text.split()
     for i in range(0,len(words),chunk_size-overlap):
-        chunk="".join(words[i:i+chunk_size])
+        chunk=" ".join(words[i:i+chunk_size])
         chunks.append(chunk)
         if i+chunk_size>len(words):
             break
@@ -47,9 +47,9 @@ for datum in data:
         summary = " ".join(summary)
     clean_summary=clean_text(summary)
     print(f"Starting summarization of item {i}/{len(data)}...")
-    final_summary=safe_summarize(summary,summarizer,400,50)
-    datum["pararaphs"]=final_summary
+    final_summary=safe_summarize(clean_summary,summarizer,400,50)
+    datum["paragraphs"]=final_summary
     print(f"Finished summarization of item {i}/{len(data)}.\n")
     i+=1
-with open("./crypto_data_summarized.json") as file:
+with open("./crypto_data_summarized.json","w") as file:
     json.dump(data,file,indent=2)
